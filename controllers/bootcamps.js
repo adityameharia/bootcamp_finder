@@ -5,7 +5,7 @@ exports.getBootcamps = (req, res, next) => {
     res.status(200).json({ success: true, msg: 'shows all the bootcamps' });
 };
 
-//des-GET ONE BOOTCAMPS
+//des-GET ONE BOOTCAMP
 //route- GET to /api/v1/bootcamps/:id
 //acess- Public
 exports.getBootcamp = (req, res, next) => {
