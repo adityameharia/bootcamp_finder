@@ -13,7 +13,7 @@ connectDB();
 
 //route files
 const bootcamps = require('./routes/bootcamps');
-
+const courses = require('./routes/courses');
 const app = express();
 
 //body-parser
@@ -21,26 +21,27 @@ app.use(express.json());
 
 //dev logging middleware
 if (process.env.NODE_ENV === 'development') {
-    app.use(morgan('dev'));
+	app.use(morgan('dev'));
 }
 
 //mount routers
 app.use('/api/v1/bootcamps', bootcamps);
+app.use('/api/v1/courses', courses);
 
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 const server = app.listen(
-    PORT,
-    console.log(
-        `server runnign in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow
-            .bold
-    )
+	PORT,
+	console.log(
+		`server runnign in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow
+			.bold
+	)
 );
 
 //handle unhandled promise rejection
 process.on('unhandledRejection', (err, promise) => {
-    console.log(`error:${err.message}`.red);
-    //close server and exit process
-    server.close(() => process.exit(1));
+	console.log(`error:${err.message}`.red);
+	//close server and exit process
+	server.close(() => process.exit(1));
 });
