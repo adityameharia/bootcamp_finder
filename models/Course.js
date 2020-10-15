@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Bootcamp = require('./Bootcamp');
 
 //defines course models
 const CourseSchema = new mongoose.Schema({
@@ -38,6 +39,41 @@ const CourseSchema = new mongoose.Schema({
 		ref: 'Bootcamp',
 		required: true,
 	},
+});
+
+//static mehtod to get avg of courses for the given bootcamp,
+//statics are basically functions that are called on the model itself whereas methods are called after "find" data from a model
+CourseSchema.statics.getAverageCost = async function (bootcampId) {
+	const obj = await this.aggregate([
+		{
+			$match: { bootcamp: bootcampId },
+		},
+		{
+			$group: {
+				_id: '$bootcamp',
+				averageCost: {
+					$avg: '$tuition',
+				},
+			},
+		},
+	]);
+	try {
+		await this.model('Bootcamp').findByIdAndUpdate(bootcampId, {
+			averageCost: Math.ceil(obj[0].averageCost / 10) * 10,
+		});
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+//call getAverage cost after saving a course so that bootcamp avg cost can be upadted
+CourseSchema.post('save', function () {
+	this.constructor.getAverageCost(this.bootcamp);
+});
+
+//call getAverage cost after deleting a course so that bootcamp avg cost can be upadted
+CourseSchema.pre('remove', function () {
+	this.constructor.getAverageCost(this.bootcamp);
 });
 
 module.exports = mongoose.model('Course', CourseSchema);

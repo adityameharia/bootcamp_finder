@@ -1,24 +1,28 @@
 {
-    "name": "devcamper_api",
-    "version": "1.0.0",
-    "description": "devcamper backend apis",
-    "main": "server.js",
-    "scripts": {
-        "start": "NODE_ENV=production node server",
-        "dev": "nodemon server"
-    },
-    "author": "aditya",
-    "license": "ISC",
-    "dependencies": {
-        "colors": "^1.4.0",
-        "dotenv": "^8.2.0",
-        "express": "^4.17.1",
-        "mongoose": "^5.9.7",
-        "morgan": "^1.10.0",
-        "node-geocoder": "^3.27.0",
-        "slugify": "^1.4.0"
-    },
-    "devDependencies": {
-        "nodemon": "^2.0.2"
-    }
+	"name": "devcamper_api",
+	"version": "1.0.0",
+	"description": "devcamper backend apis",
+	"main": "server.js",
+	"scripts": {
+		"start": "NODE_ENV=production node server",
+		"dev": "nodemon server"
+	},
+	"author": "aditya",
+	"license": "ISC",
+	"dependencies": {
+		"aws-sdk": "^2.771.0",
+		"colors": "^1.4.0",
+		"dotenv": "^8.2.0",
+		"express": "^4.17.1",
+		"express-fileupload": "^1.2.0",
+		"mongoose": "^5.9.7",
+		"morgan": "^1.10.0",
+		"multer": "^1.4.2",
+		"multer-s3": "^2.9.0",
+		"node-geocoder": "^3.27.0",
+		"slugify": "^1.4.0"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.2"
+	}
 }
