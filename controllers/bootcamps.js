@@ -4,7 +4,6 @@ const geocoder = require('../utils/geocoder');
 const asyncHandler = require('../middleware/async');
 const AWS = require('aws-sdk');
 const Bootcamp = require('../models/Bootcamp');
-const fs = require('fs');
 
 //des-GET ALL BOOTCAMPS
 //route- GET to /api/v1/bootcamps
