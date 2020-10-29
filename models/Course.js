@@ -39,6 +39,11 @@ const CourseSchema = new mongoose.Schema({
 		ref: 'Bootcamp',
 		required: true,
 	},
+	user: {
+		type: mongoose.Schema.ObjectId,
+		ref: 'User',
+		required: true,
+	},
 });
 
 //static mehtod to get avg of courses for the given bootcamp,
